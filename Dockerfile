@@ -59,6 +59,11 @@ RUN unzip bowtie2-2.3.4.1-linux-x86_64.zip
 ## Install Aspera
 RUN wget https://download.asperasoft.com/download/sw/cli/3.7.7/aspera-cli-3.7.7.608.927cce8-linux-64-release.sh
 RUN bash aspera-cli-3.7.7.608.927cce8-linux-64-release.sh
+### default installs in /root/.aspera/cli/bin/ 
+RUN mkdir -p /tools/.aspera/cli/bin/
+RUN cp -a /root/.aspera/cli/bin/. /tools/.aspera/cli/bin 
+###
+ENV PATH="/tools/.aspera/cli/bin:${PATH}"
 ENV PATH="/root/.aspera/cli/bin:${PATH}"
 
 WORKDIR /
